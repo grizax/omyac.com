@@ -5,14 +5,11 @@ jobs:
       - image: node:10.11.0
     working_directory: ~/omyac.com
     steps:
-      - run:
-          name: Install Hexo CLI
-          command: npm install -g hexo-cli
+      - run: command: npm install -g hexo-cli
       - restore_cache:
           keys:
             - npm-deps-{{ checksum "package.json" }}
-      - run:
-          name: Install dependencies
+      - run: command: npm install
           command: npm install
       - save_cache:
           key: npm-deps-{{ checksum "package.json" }}
