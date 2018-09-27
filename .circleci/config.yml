@@ -8,6 +8,7 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Update npm
           command: 'npm install -g hexo-cli'
       - restore_cache:
             keys:
