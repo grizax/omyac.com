@@ -5,7 +5,6 @@ jobs:
       - image: node:10.11.0
     working_directory: ~/omyac.com
     steps:
-      - checkout
       - run:
           name: Install Hexo CLI
           command: npm install -g hexo-cli
