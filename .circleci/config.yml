@@ -1,10 +1,9 @@
 version: 2
 jobs:
   build:
-    #working_directory: ~/omyac.com
     docker:
       - image: node:10.11.0
-    working_directory: ~/omyac.com
+working_directory: ~/omyac.com
     steps:
       - checkout
       - run: npm install -g hexo-cli
