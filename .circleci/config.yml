@@ -3,15 +3,17 @@ jobs:
   build:
     docker:
       - image: node:10.11.0
-working_directory: ~/omyac.com
+    working_directory: ~/omyac.com
     steps:
       - checkout
       - run:
+            name: Install Hexo CLI
             command: npm install -g hexo-cli
       - restore_cache:
             keys:
                 - npm-deps-{{ checksum "package.json" }}
       - run:
+            name: Install dependencies
             command: npm install
       - save_cache:
             key: npm-deps-{{ checksum "package.json" }}
