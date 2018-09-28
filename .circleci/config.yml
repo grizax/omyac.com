@@ -5,25 +5,26 @@ jobs:
       - image: node:10.11.0
     working_directory: ~/omyac.com
     steps:
-      - run: npm install -g hexo-cli
-      - restore_cache:
-            keys:
-                - npm-deps-{{ checksum "package.json" }}
       - run:
-            name: Install dependencies
-            command: npm install
+          command: npm install -g hexo-cli
+      - restore_cache:
+          keys:
+              - npm-deps-{{ checksum "package.json" }}
+      - run:
+          name: Install dependencies
+          command: npm install
       - save_cache:
-            key: npm-deps-{{ checksum "package.json" }}
-            paths:
+          key: npm-deps-{{ checksum "package.json" }}
+          paths:
                 - node_modules
       - run:
-            name: Generate static website
-            command: hexo generate
+          name: Generate static website
+          command: hexo generate
       - run:
-            name: Install AWS CLI
-            command: |
-                apt-get update
-                apt-get install -y awscli
+          name: Install AWS CLI
+          command: |
+            apt-get update
+            apt-get install -y awscli
       - run:
-            name: Push to S3 bucket
+          name: Push to S3 bucket
 command: cd public/ && aws s3 sync . s3://omyac.com
