@@ -6,7 +6,7 @@ jobs:
     working_directory: ~/omyac.com
     steps:
       - checkout
-      - run: npm install -g hexo-cli
+      - run: "npm install -g hexo-cli"
       - restore_cache:
             keys:
                 - npm-deps-{{ checksum "package.json" }}
